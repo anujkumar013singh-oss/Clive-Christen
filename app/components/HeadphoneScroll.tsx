@@ -212,44 +212,6 @@ export default function HeadphoneScroll() {
 
   return (
     <div ref={containerRef} className="relative h-[800vh] bg-[#050505]">
-      {/* Cinematic Loading Reveal */}
-      <motion.div 
-        initial={false}
-        animate={{ 
-          opacity: isLoaded ? 0 : 1,
-          pointerEvents: isLoaded ? 'none' : 'auto'
-        }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050505]"
-      >
-        <div className="relative w-full max-w-md px-12 space-y-8">
-           <div className="flex flex-col items-center">
-              <motion.div 
-                className="w-16 h-16 rounded-full border border-[#C6A87C]/20 flex items-center justify-center relative overflow-hidden"
-              >
-                 <motion.div 
-                   className="absolute inset-0 bg-[#C6A87C]/10"
-                   style={{ height: `${loadProgress}%`, bottom: 0, top: 'auto' }}
-                 />
-                 <span className="relative z-10 text-[10px] font-mono text-[#C6A87C]">{loadProgress}%</span>
-              </motion.div>
-              <div className="mt-8 space-y-2 text-center">
-                 <h3 className="text-xs font-bold tracking-[0.6em] text-[#C6A87C] uppercase">Synchronizing</h3>
-                 <p className="text-[10px] text-white/30 tracking-[0.4em] uppercase">Molecular Frequency</p>
-              </div>
-           </div>
-           
-           {/* Progress Line */}
-           <div className="relative w-full h-[1px] bg-white/5 overflow-hidden">
-              <motion.div 
-                className="absolute top-0 left-0 h-full bg-[#C6A87C]"
-                initial={{ width: 0 }}
-                animate={{ width: `${loadProgress}%` }}
-              />
-           </div>
-        </div>
-      </motion.div>
-
       {/* Fixed Canvas Container */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
          <motion.div
