@@ -73,13 +73,6 @@ export default function HeadphoneScroll() {
           loadedCount++;
           setLoadProgress(Math.round((loadedCount / FRAME_COUNT) * 100));
           
-          // Once 50 images are loaded (including every 4th one), we can show the content
-          if (loadedCount >= 50 && !isLoaded) {
-            setImages([...imgArray]);
-            setIsLoaded(true);
-            setTimeout(() => setShowContent(true), 500);
-          }
-          
           // Periodically update the images array to show newly loaded frames
           if (loadedCount % 5 === 0) {
             setImages([...imgArray]);
@@ -97,6 +90,9 @@ export default function HeadphoneScroll() {
     const loadSequence = async () => {
       // 1. Load First Frame
       await loadSingleImage(0);
+      setImages([...imgArray]);
+      setIsLoaded(true);
+      setShowContent(true);
       
       // 2. Load Every 4th Frame (Priority 1)
       const priority1Urls = [];
@@ -216,10 +212,10 @@ export default function HeadphoneScroll() {
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
          <motion.div
            animate={{ 
-             scale: isLoaded ? 1 : 1.1,
-             filter: isLoaded ? 'blur(0px)' : 'blur(20px)'
+             scale: isLoaded ? 1 : 1.05,
+             filter: isLoaded ? 'blur(0px)' : 'blur(10px)'
            }}
-           transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
            className="w-full h-full"
          >
             <canvas ref={canvasRef} className="block w-full h-full object-cover" />
